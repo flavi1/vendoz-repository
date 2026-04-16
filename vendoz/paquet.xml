@@ -8,6 +8,8 @@
     <dependance nom="zcore" />
     <dependance nom="saisies" />
 	<dependance nom="prix" />
+	<dependance nom="prix_objets" />
+	<dependance nom="commandes" />
 	<dependance nom="paniers" />
 	
 </paquet>
