@@ -1,0 +1,13 @@
+<paquet
+    prefix="vendoz"
+    categorie="outils"
+    version="dev" etat="stable">
+
+    <nom>VendoZ Engine</nom>
+    
+    <dependance nom="zcore" />
+    <dependance nom="saisies" />
+	<dependance nom="prix" />
+	<dependance nom="paniers" />
+	
+</paquet>

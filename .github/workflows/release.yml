@@ -1,0 +1,50 @@
+name: Build VendoZ Release
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'vendoz/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate Version and Build
+        run: |
+          # 1. Créer un numéro de version basé sur la date (ex: 1.0.AAAAMMJJHHMM)
+          VERSION="1.0.$(date +'%Y%m%d%H%M')"
+          echo "Nouvelle version générée : $VERSION"
+          
+          # 2. Injecter la version dans le paquet.xml juste pour le build
+          sed -i "s/version=\"[^\"]*\"/version=\"$VERSION\"/" vendoz/paquet.xml
+          
+          # 3. Créer le ZIP avec le fichier modifié
+          mkdir -p archives
+          zip -r "archives/vendoz_latest.zip" vendoz
+          
+          # 4. Générer le plugins.xml avec cette version dynamique
+          cat <<EOF > plugins.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <plugins>
+              <plugin>
+                  <nom>VendoZ Engine</nom>
+                  <prefix>vendoz</prefix>
+                  <version>$VERSION</version>
+                  <etat>stable</etat>
+                  <url_archive>https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/archives/vendoz_latest.zip</url_archive>
+              </plugin>
+          </plugins>
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "VendoZ Bot"
+          git config --global user.email "bot@vendoz.com"
+          # On ne push que les fichiers de sortie, pas le paquet.xml source
+          git add archives/vendoz_latest.zip plugins.xml
+          git commit -m "VendoZ Release $VERSION" || echo "No changes"
+          git push
