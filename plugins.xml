@@ -3,7 +3,7 @@
     <plugin>
         <nom>VendoZ Engine</nom>
         <prefix>vendoz</prefix>
-        <version>1.0.202604161155</version>
+        <version>1.0.202604161209</version>
         <etat>stable</etat>
         <url_archive>https://flavi1.github.io/vendoz-repository/archives/vendoz_latest.zip</url_archive>
     </plugin>
