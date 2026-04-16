@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugins>
     <plugin>
-        <nom>VendoZ Engine</nom>
+        <nom>VendoZ Distribution e-Commerce</nom>
         <prefix>vendoz</prefix>
-        <version>1.0.202604161213</version>
+        <version>1.0.202604161217</version>
         <etat>stable</etat>
         <url_archive>https://flavi1.github.io/vendoz-repository/archives/vendoz_latest.zip</url_archive>
     </plugin>
