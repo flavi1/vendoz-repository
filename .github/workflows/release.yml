@@ -44,7 +44,6 @@ jobs:
         run: |
           git config --global user.name "VendoZ Bot"
           git config --global user.email "bot@vendoz.com"
-          # On ne push que les fichiers de sortie, pas le paquet.xml source
           git add archives/vendoz_latest.zip plugins.xml
-          git commit -m "VendoZ Release $VERSION" || echo "No changes"
-          git push
+          # On commit seulement s'il y a des changements pour éviter de faire échouer l'action
+          git diff --quiet && git diff --staged --quiet || (git commit -m "VendoZ Release $VERSION" && git push)
