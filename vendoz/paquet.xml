@@ -3,7 +3,7 @@
     categorie="outils"
     version="dev" etat="stable">
 
-    <nom>VendoZ Engine</nom>
+    <nom>VendoZ Distribution e-Commerce</nom>
     
     <dependance nom="zcore" />
     <dependance nom="saisies" />
